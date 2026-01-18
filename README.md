@@ -2,7 +2,7 @@
 
 A production-ready Retrieval-Augmented Generation (RAG) application with vector search, reranking, and LLM-powered answers with citations.
 
-**Live Demo:** [Your Vercel URL here]  
+**Live Demo:** [mini-rag-app-z3n9.vercel.app]  
 **Author:** Gautam Kumar | NIT Delhi | AI-DS (CSE) | Roll No: 231212013 | Email: 231212013@nitdelhi.ac.in
 
 ---
