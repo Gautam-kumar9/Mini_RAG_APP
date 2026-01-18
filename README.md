@@ -323,6 +323,13 @@ Get database statistics.
 - Storage: Negligible (Supabase free tier)
 
 ---
+OUTPUT:-
+simple availabe document
+<img width="1409" height="676" alt="image" src="https://github.com/user-attachments/assets/ba884223-857b-4949-8fb5-2e56c5855911" />
+User want to upload the document or ask the question form the doumnet or whether ask the question from existing document 
+<img width="1237" height="545" alt="image" src="https://github.com/user-attachments/assets/6acd29a2-9be3-4e34-8964-b58ab138a0c0" />
+Results of the a particular question
+<img width="959" height="818" alt="image" src="https://github.com/user-attachments/assets/8399f5d5-fdfc-484e-8b3d-c9c2adfa7b9f" />
 
 ## 🔧 Remarks
 
