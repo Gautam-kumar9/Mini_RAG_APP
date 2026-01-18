@@ -82,3 +82,53 @@ export async function getDocumentCount(): Promise<number> {
 
   return count || 0;
 }
+
+/**
+ * Get list of all unique documents with their metadata
+ */
+export async function getDocumentsList(): Promise<Array<{
+  source: string;
+  title?: string;
+  chunkCount: number;
+  firstSeen: string;
+}>> {
+  const { data, error } = await supabase
+    .from(COLLECTION_NAME)
+    .select('metadata, created_at');
+
+  if (error) {
+    throw new Error(`Failed to get documents list: ${error.message}`);
+  }
+
+  // Group by source and aggregate
+  const docsMap = new Map<string, {
+    source: string;
+    title?: string;
+    chunkCount: number;
+    firstSeen: string;
+  }>();
+
+  data?.forEach((doc: any) => {
+    const source = doc.metadata.source;
+    if (docsMap.has(source)) {
+      const existing = docsMap.get(source)!;
+      existing.chunkCount++;
+      // Keep earliest created_at
+      if (doc.created_at < existing.firstSeen) {
+        existing.firstSeen = doc.created_at;
+      }
+    } else {
+      docsMap.set(source, {
+        source,
+        title: doc.metadata.title,
+        chunkCount: 1,
+        firstSeen: doc.created_at || new Date().toISOString(),
+      });
+    }
+  });
+
+  return Array.from(docsMap.values()).sort((a, b) => 
+    new Date(b.firstSeen).getTime() - new Date(a.firstSeen).getTime()
+  );
+}
+

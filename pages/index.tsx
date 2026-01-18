@@ -10,6 +10,13 @@ interface Citation {
   rerankScore: number;
 }
 
+interface Document {
+  source: string;
+  title?: string;
+  chunkCount: number;
+  firstSeen: string;
+}
+
 interface QueryResponse {
   answer: string;
   citations: Citation[];
@@ -38,6 +45,8 @@ export default function Home() {
   const [uploadStatus, setUploadStatus] = useState('');
   const [queryResult, setQueryResult] = useState<QueryResponse | null>(null);
   const [docCount, setDocCount] = useState(0);
+  const [documents, setDocuments] = useState<Document[]>([]);
+  const [selectedDoc, setSelectedDoc] = useState<string | null>(null);
 
   useEffect(() => {
     fetchStats();
@@ -48,6 +57,7 @@ export default function Home() {
       const res = await fetch('/api/stats');
       const data = await res.json();
       setDocCount(data.count);
+      setDocuments(data.documents || []);
     } catch (error) {
       console.error('Failed to fetch stats:', error);
     }
@@ -159,6 +169,68 @@ export default function Home() {
               <p className="text-white font-semibold">📚 {docCount} documents loaded</p>
             </div>
           </div>
+
+          {/* Documents List Section */}
+          {documents.length > 0 && (
+            <div className="mb-12 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-700">
+              <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500 mb-6">
+                📚 Available Documents ({documents.length})
+              </h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {documents.map((doc, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => setSelectedDoc(selectedDoc === doc.source ? null : doc.source)}
+                    className={`group cursor-pointer p-5 rounded-xl border-2 transition-all duration-300 transform hover:scale-105 ${
+                      selectedDoc === doc.source
+                        ? 'bg-gradient-to-br from-cyan-900 to-blue-900 border-cyan-500 shadow-lg'
+                        : 'bg-gray-800 border-gray-600 hover:border-cyan-400'
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center text-xl">
+                        📄
+                      </div>
+                      <div className="flex-grow min-w-0">
+                        <h3 className="font-bold text-cyan-300 truncate group-hover:text-cyan-200">
+                          {doc.title || doc.source}
+                        </h3>
+                        <p className="text-xs text-gray-400 mt-1 truncate">
+                          {doc.source}
+                        </p>
+                        <div className="flex gap-2 mt-2">
+                          <span className="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded-full">
+                            {doc.chunkCount} chunks
+                          </span>
+                          <span className="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded-full">
+                            {new Date(doc.firstSeen).toLocaleDateString()}
+                          </span>
+                        </div>
+                      </div>
+                      {selectedDoc === doc.source && (
+                        <div className="flex-shrink-0 text-cyan-400">
+                          ✓
+                        </div>
+                      )}
+                    </div>
+                    {selectedDoc === doc.source && (
+                      <div className="mt-3 pt-3 border-t border-gray-600">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setQuery(`Tell me about ${doc.title || doc.source}`);
+                          }}
+                          className="w-full text-xs bg-gradient-to-r from-cyan-600 to-blue-700 text-white py-2 px-3 rounded-lg hover:from-cyan-700 hover:to-blue-800 transition-all"
+                        >
+                          Ask about this document
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Upload Section */}
