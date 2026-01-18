@@ -1,0 +1,9 @@
+Gene editing technologies, particularly CRISPR-Cas9, have revolutionized biological research and medicine. CRISPR allows scientists to precisely modify DNA sequences in living organisms, opening possibilities for treating genetic diseases, improving crops, and understanding gene function.
+
+The CRISPR system originated from bacterial immune defenses against viruses. Scientists adapted it to work in other organisms by guiding the Cas9 enzyme to specific DNA sequences using a guide RNA. Once at the target location, Cas9 cuts the DNA, allowing researchers to delete, modify, or insert genetic material.
+
+Medical applications are promising but raise ethical questions. Clinical trials are underway for treating sickle cell disease, certain cancers, and inherited blindness. However, germline editing—modifying embryos so changes are inherited—remains controversial. The 2018 announcement of gene-edited babies in China sparked global debate about appropriate boundaries.
+
+Beyond medicine, CRISPR is being used to develop disease-resistant crops, create lab-grown meat, and even attempt to resurrect extinct species. The technology is becoming more precise with variants like base editing and prime editing, which reduce unintended mutations.
+
+Regulation varies globally, with some countries banning germline editing while others allow research under strict oversight. As the technology becomes more accessible and affordable, society must grapple with questions about enhancement versus therapy, equity of access, and long-term consequences.

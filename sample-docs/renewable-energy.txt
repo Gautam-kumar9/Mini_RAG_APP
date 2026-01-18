@@ -1,0 +1,9 @@
+Renewable energy sources are essential for sustainable development and combating climate change. Solar power harnesses energy from the sun using photovoltaic cells or concentrated solar power systems. The cost of solar panels has dropped dramatically over the past decade, making solar energy competitive with fossil fuels in many regions.
+
+Wind energy captures kinetic energy from air movement using turbines. Offshore wind farms benefit from stronger and more consistent winds but face higher installation and maintenance costs. Wind power is one of the fastest-growing energy sources globally.
+
+Hydroelectric power generates electricity by harnessing the energy of flowing water. While clean and reliable, large dams can have significant environmental and social impacts, including ecosystem disruption and displacement of communities. Small-scale hydropower offers a more sustainable alternative.
+
+Energy storage is crucial for renewable energy adoption. Batteries store excess energy generated during peak production times for use when generation is low. Pumped hydro storage and emerging technologies like hydrogen fuel cells provide additional options for large-scale energy storage.
+
+The transition to renewable energy requires substantial investment in grid infrastructure, as current systems were designed for centralized fossil fuel power plants. Smart grids use digital technology to balance supply and demand dynamically, accommodating the variable nature of renewable sources.

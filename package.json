@@ -1,0 +1,45 @@
+{
+  "name": "mini-rag-app",
+  "version": "1.0.0",
+  "private": true,
+  "author": {
+    "name": "Gautam Kumar",
+    "email": "231212013@nitdelhi.ac.in",
+    "college": "NIT Delhi",
+    "branch": "AI-DS (CSE)",
+    "rollNo": "231212013"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "setup": "powershell -ExecutionPolicy Bypass -File ./setup.ps1",
+    "check": "npm run lint && npm run build"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.1.3",
+    "@langchain/community": "^0.0.20",
+    "@langchain/openai": "^0.0.11",
+    "@supabase/supabase-js": "^2.39.0",
+    "cohere-ai": "^7.7.0",
+    "formidable": "^3.5.4",
+    "groq-sdk": "^0.7.0",
+    "langchain": "^0.1.0",
+    "mammoth": "^1.6.0",
+    "next": "^14.0.4",
+    "pdf-parse": "^1.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/formidable": "^3.4.6",
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.3"
+  }
+}
