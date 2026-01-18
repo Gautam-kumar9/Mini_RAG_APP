@@ -145,28 +145,35 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+      <main className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">Mini RAG App</h1>
-            <p className="text-gray-600">Upload documents, ask questions, get cited answers</p>
-            <p className="text-sm text-gray-500 mt-2">Documents in database: {docCount}</p>
+          {/* Header Section */}
+          <div className="text-center mb-12">
+            <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 mb-3 animate-pulse">
+              ✨ Mini RAG App
+            </h1>
+            <p className="text-lg text-gray-300 mb-2">
+              Intelligent Document Search & Question Answering
+            </p>
+            <div className="inline-block px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full">
+              <p className="text-white font-semibold">📚 {docCount} documents loaded</p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Upload Section */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">📄 Upload Document</h2>
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-700 hover:border-cyan-500 transition-all duration-300">
+              <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">📄 Upload Document</h2>
               
               {/* Mode Tabs */}
-              <div className="flex gap-2 mb-4">
+              <div className="flex gap-2 mb-6 bg-gray-700 p-1 rounded-lg">
                 <button
                   type="button"
                   onClick={() => setUploadMode('file')}
-                  className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${
+                  className={`flex-1 py-3 px-4 rounded-md font-semibold transition-all duration-300 ${
                     uploadMode === 'file'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg transform scale-105'
+                      : 'text-gray-400 hover:text-gray-200'
                   }`}
                 >
                   📎 Upload File
@@ -174,61 +181,63 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setUploadMode('text')}
-                  className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${
+                  className={`flex-1 py-3 px-4 rounded-md font-semibold transition-all duration-300 ${
                     uploadMode === 'text'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg transform scale-105'
+                      : 'text-gray-400 hover:text-gray-200'
                   }`}
                 >
                   📝 Paste Text
                 </button>
               </div>
 
-              <form onSubmit={handleUpload} className="space-y-4">
+              <form onSubmit={handleUpload} className="space-y-5">
                 {uploadMode === 'file' ? (
                   <>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-cyan-400 mb-3">
                         Select File (PDF, TXT, DOCX) *
                       </label>
                       <input
                         type="file"
                         accept=".txt,.pdf,.docx,.doc"
                         onChange={(e) => setFile(e.target.files?.[0] || null)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-dashed border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-gray-800 text-white hover:border-cyan-400 transition-colors"
                         required
                       />
                       {file && (
-                        <p className="text-sm text-gray-600 mt-1">
-                          Selected: {file.name} ({(file.size / 1024).toFixed(2)} KB)
-                        </p>
+                        <div className="mt-3 p-3 bg-cyan-500 bg-opacity-10 border border-cyan-500 rounded-lg">
+                          <p className="text-sm text-cyan-300 font-semibold">
+                            ✓ Selected: {file.name} ({(file.size / 1024).toFixed(2)} KB)
+                          </p>
+                        </div>
                       )}
                     </div>
                   </>
                 ) : (
                   <>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-cyan-400 mb-3">
                         Document Text *
                       </label>
                       <textarea
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-32 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full h-32 px-4 py-3 border-2 border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-gray-800 text-white placeholder-gray-500 hover:border-cyan-400 transition-colors resize-none"
                         placeholder="Paste your document text here..."
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-cyan-400 mb-3">
                         Source Name *
                       </label>
                       <input
                         type="text"
                         value={source}
                         onChange={(e) => setSource(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border-2 border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-gray-800 text-white placeholder-gray-500 hover:border-cyan-400 transition-colors"
                         placeholder="e.g., document.txt, article.pdf"
                         required
                       />
@@ -237,14 +246,14 @@ export default function Home() {
                 )}
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-cyan-400 mb-3">
                     Title (optional)
                   </label>
                   <input
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border-2 border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-gray-800 text-white placeholder-gray-500 hover:border-cyan-400 transition-colors"
                     placeholder="Document title"
                   />
                 </div>
@@ -252,17 +261,25 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 px-4 rounded-lg hover:from-cyan-600 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed transition-all duration-300 font-bold transform hover:scale-105 active:scale-95 shadow-lg"
                 >
-                  {loading ? 'Processing...' : 'Upload & Process'}
+                  {loading ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                      </svg>
+                      Processing...
+                    </span>
+                  ) : 'Upload & Process'}
                 </button>
               </form>
 
               {uploadStatus && (
-                <div className={`mt-4 p-3 rounded-md text-sm ${
+                <div className={`mt-4 p-4 rounded-lg text-sm font-semibold border-2 animate-in fade-in ${
                   uploadStatus.startsWith('✓') 
-                    ? 'bg-green-50 text-green-800 border border-green-200' 
-                    : 'bg-red-50 text-red-800 border border-red-200'
+                    ? 'bg-green-500 bg-opacity-10 text-green-300 border-green-500' 
+                    : 'bg-red-500 bg-opacity-10 text-red-300 border-red-500'
                 }`}>
                   {uploadStatus}
                 </div>
@@ -270,17 +287,17 @@ export default function Home() {
             </div>
 
             {/* Query Section */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">🔍 Ask Question</h2>
-              <form onSubmit={handleQuery} className="space-y-4">
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-700 hover:border-purple-500 transition-all duration-300">
+              <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 mb-6">🔍 Ask Question</h2>
+              <form onSubmit={handleQuery} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-purple-400 mb-3">
                     Your Question
                   </label>
                   <textarea
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    className="w-full h-32 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full h-32 px-4 py-3 border-2 border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-gray-800 text-white placeholder-gray-500 hover:border-purple-400 transition-colors resize-none"
                     placeholder="Ask a question about your documents..."
                     required
                   />
@@ -289,9 +306,17 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                  className="w-full bg-gradient-to-r from-purple-500 to-pink-600 text-white py-3 px-4 rounded-lg hover:from-purple-600 hover:to-pink-700 disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed transition-all duration-300 font-bold transform hover:scale-105 active:scale-95 shadow-lg"
                 >
-                  {loading ? 'Searching...' : 'Get Answer'}
+                  {loading ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                      </svg>
+                      Searching...
+                    </span>
+                  ) : 'Get Answer'}
                 </button>
               </form>
             </div>
@@ -299,50 +324,50 @@ export default function Home() {
 
           {/* Results Section */}
           {queryResult && (
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">💡 Answer</h2>
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-700 border-opacity-50 animate-in fade-in slide-in-from-bottom">
+              <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-cyan-500 mb-6">💡 Answer</h2>
               
-              <div className="prose max-w-none mb-6">
-                <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+              <div className="prose prose-invert max-w-none mb-8 p-6 bg-gray-800 rounded-lg border border-gray-700">
+                <p className="text-gray-100 leading-relaxed whitespace-pre-wrap text-lg">
                   {queryResult.answer}
                 </p>
               </div>
 
               {/* Timing & Cost */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 p-4 bg-gray-50 rounded-md">
-                <div>
-                  <p className="text-xs text-gray-500">Retrieval</p>
-                  <p className="text-sm font-semibold text-gray-800">
-                    {queryResult.timing.retrievalMs}ms
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div className="bg-gradient-to-br from-blue-900 to-blue-800 p-4 rounded-lg border border-blue-700">
+                  <p className="text-xs text-blue-300 font-semibold">⚡ Retrieval</p>
+                  <p className="text-2xl font-bold text-blue-100 mt-2">
+                    {queryResult.timing.retrievalMs}<span className="text-sm">ms</span>
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-500">Reranking</p>
-                  <p className="text-sm font-semibold text-gray-800">
-                    {queryResult.timing.rerankMs}ms
+                <div className="bg-gradient-to-br from-purple-900 to-purple-800 p-4 rounded-lg border border-purple-700">
+                  <p className="text-xs text-purple-300 font-semibold">🔄 Reranking</p>
+                  <p className="text-2xl font-bold text-purple-100 mt-2">
+                    {queryResult.timing.rerankMs}<span className="text-sm">ms</span>
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-500">LLM</p>
-                  <p className="text-sm font-semibold text-gray-800">
-                    {queryResult.timing.llmMs}ms
+                <div className="bg-gradient-to-br from-pink-900 to-pink-800 p-4 rounded-lg border border-pink-700">
+                  <p className="text-xs text-pink-300 font-semibold">🤖 LLM</p>
+                  <p className="text-2xl font-bold text-pink-100 mt-2">
+                    {queryResult.timing.llmMs}<span className="text-sm">ms</span>
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-500">Total Time</p>
-                  <p className="text-sm font-semibold text-gray-800">
-                    {queryResult.timing.totalMs}ms
+                <div className="bg-gradient-to-br from-cyan-900 to-cyan-800 p-4 rounded-lg border border-cyan-700">
+                  <p className="text-xs text-cyan-300 font-semibold">⏱️ Total</p>
+                  <p className="text-2xl font-bold text-cyan-100 mt-2">
+                    {queryResult.timing.totalMs}<span className="text-sm">ms</span>
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-500">Tokens</p>
-                  <p className="text-sm font-semibold text-gray-800">
+                <div className="bg-gradient-to-br from-green-900 to-green-800 p-4 rounded-lg border border-green-700">
+                  <p className="text-xs text-green-300 font-semibold">📊 Tokens</p>
+                  <p className="text-2xl font-bold text-green-100 mt-2">
                     {queryResult.usage.totalTokens}
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-500">Est. Cost</p>
-                  <p className="text-sm font-semibold text-gray-800">
+                <div className="bg-gradient-to-br from-orange-900 to-orange-800 p-4 rounded-lg border border-orange-700">
+                  <p className="text-xs text-orange-300 font-semibold">💰 Est. Cost</p>
+                  <p className="text-2xl font-bold text-orange-100 mt-2">
                     ${queryResult.usage.estimatedCost.toFixed(6)}
                   </p>
                 </div>
@@ -351,29 +376,31 @@ export default function Home() {
               {/* Citations */}
               {queryResult.citations.length > 0 && (
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">📚 Sources</h3>
-                  <div className="space-y-3">
-                    {queryResult.citations.map((citation) => (
+                  <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500 mb-6">📚 Sources</h3>
+                  <div className="space-y-4">
+                    {queryResult.citations.map((citation, idx) => (
                       <div
                         key={citation.index}
-                        className="border border-gray-200 rounded-md p-4 hover:bg-gray-50 transition-colors"
+                        className="group bg-gradient-to-r from-gray-800 to-gray-700 border-2 border-gray-600 rounded-xl p-6 hover:border-orange-500 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                       >
-                        <div className="flex items-start gap-3">
-                          <span className="flex-shrink-0 w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">
+                        <div className="flex items-start gap-4">
+                          <span className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
                             {citation.index}
                           </span>
                           <div className="flex-grow">
-                            <div className="flex justify-between items-start mb-2">
+                            <div className="flex justify-between items-start mb-3">
                               <div>
-                                <p className="font-medium text-gray-800">
+                                <p className="font-bold text-lg text-orange-300 group-hover:text-orange-200">
                                   {citation.title || citation.source}
                                 </p>
-                                <p className="text-xs text-gray-500">
-                                  {citation.source} • Chunk {citation.position + 1} • Score: {citation.rerankScore.toFixed(3)}
-                                </p>
+                                <div className="flex gap-3 mt-2 text-xs text-gray-400 flex-wrap">
+                                  <span className="bg-gray-700 px-3 py-1 rounded-full">📄 {citation.source}</span>
+                                  <span className="bg-gray-700 px-3 py-1 rounded-full">📍 Chunk {citation.position + 1}</span>
+                                  <span className="bg-gradient-to-r from-cyan-700 to-blue-700 px-3 py-1 rounded-full text-cyan-200">⭐ {citation.rerankScore.toFixed(3)}</span>
+                                </div>
                               </div>
                             </div>
-                            <p className="text-sm text-gray-700 leading-relaxed">
+                            <p className="text-sm text-gray-300 leading-relaxed bg-gray-900 bg-opacity-50 p-3 rounded-lg border border-gray-700">
                               {citation.content}
                             </p>
                           </div>

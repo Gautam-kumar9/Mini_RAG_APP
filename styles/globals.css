@@ -17,3 +17,101 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 200, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.6);
+  }
+}
+
+.animate-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.slide-in-from-bottom {
+  animation: slideInFromBottom 0.5s ease-out;
+}
+
+.slide-in-from-left {
+  animation: slideInFromLeft 0.5s ease-out;
+}
+
+/* Button hover effects */
+button:hover:not(:disabled) {
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
+}
+
+/* Input focus glow */
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d4ff, #0ea5e9);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #06b6d4, #0284c7);
+}
+
