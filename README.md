@@ -51,6 +51,7 @@ A production-ready Retrieval-Augmented Generation (RAG) application with vector 
 │  • Metadata filtering & full-text search   │
 └────────────────────────────────────────────┘
 \`\`\`
+<img width="1128" height="611" alt="image" src="https://github.com/user-attachments/assets/2c432b26-c6f6-48e2-8301-0b4d5f6b7ed6" />
 
 ### Data Flow
 
