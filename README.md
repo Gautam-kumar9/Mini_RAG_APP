@@ -4,7 +4,7 @@ A production-ready Retrieval-Augmented Generation (RAG) application with vector 
 
 **Live Demo:** [https://mini-rag-app-z3n9.vercel.app]  
 **Author:** Gautam Kumar | NIT Delhi | AI-DS (CSE) | Roll No: 231212013 | Email: 231212013@nitdelhi.ac.in
-
+Resume link: -https://drive.google.com/file/d/15NnYKf7OnTBQbcIW8kr-_isF94bBNS_s/view?usp=drive_link
 ---
 
 ## 🎯 Features
